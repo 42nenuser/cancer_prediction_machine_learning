@@ -1,4 +1,122 @@
-testing
-#!/bin/bash
-curl -L -o ~/Downloads/breast-cancer-wisconsin-data.zip\
-  https://www.kaggle.com/api/v1/datasets/download/uciml/breast-cancer-wisconsin-data
+import plotly.graph_objects as go
+import streamlit as st
+import numpy as np
+
+def get_improved_radar_chart(input_data):
+    """
+    Generates an improved radar chart with better readability, interactions, and user-friendly labels.
+    """
+    categories = [
+        'Radius', 'Texture', 'Perimeter', 'Area', 
+        'Smoothness', 'Compactness', 
+        'Concavity', 'Concave Points',
+        'Symmetry', 'Fractal Dimension'
+    ]
+
+    # Extracting and normalizing values
+    values_mean = [
+        input_data['radius_mean'], input_data['texture_mean'], input_data['perimeter_mean'],
+        input_data['area_mean'], input_data['smoothness_mean'], input_data['compactness_mean'],
+        input_data['concavity_mean'], input_data['concave points_mean'], input_data['symmetry_mean'],
+        input_data['fractal_dimension_mean']
+    ]
+
+    values_se = [
+        input_data['radius_se'], input_data['texture_se'], input_data['perimeter_se'], input_data['area_se'],
+        input_data['smoothness_se'], input_data['compactness_se'], input_data['concavity_se'],
+        input_data['concave points_se'], input_data['symmetry_se'], input_data['fractal_dimension_se']
+    ]
+
+    values_worst = [
+        input_data['radius_worst'], input_data['texture_worst'], input_data['perimeter_worst'],
+        input_data['area_worst'], input_data['smoothness_worst'], input_data['compactness_worst'],
+        input_data['concavity_worst'], input_data['concave points_worst'], input_data['symmetry_worst'],
+        input_data['fractal_dimension_worst']
+    ]
+
+    # Normalize values to range [0, 1] for better visualization
+    max_value = max(values_mean + values_se + values_worst)
+    values_mean = [v / max_value for v in values_mean]
+    values_se = [v / max_value for v in values_se]
+    values_worst = [v / max_value for v in values_worst]
+
+    fig = go.Figure()
+
+    # Mean values with better fill transparency
+    fig.add_trace(go.Scatterpolar(
+        r=values_mean,
+        theta=categories,
+        fill='toself',
+        name='Mean Value',
+        marker=dict(color='blue'),
+        opacity=0.6
+    ))
+
+    # Standard Error values with dashed lines
+    fig.add_trace(go.Scatterpolar(
+        r=values_se,
+        theta=categories,
+        fill='toself',
+        name='Standard Error',
+        marker=dict(color='black'),
+        line=dict(dash='dot'),
+        opacity=0.5
+    ))
+
+    # Worst-case values with bold fill
+    fig.add_trace(go.Scatterpolar(
+        r=values_worst,
+        theta=categories,
+        fill='toself',
+        name='Worst Value',
+        marker=dict(color='red'),
+        opacity=0.5
+    ))
+
+    # Improve layout appearance
+    fig.update_layout(
+        title="🔬 Breast Cancer Feature Analysis",
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0, 1],  # Always normalize within range
+                showticklabels=True,  # Show radial ticks
+                tickmode="array",
+                tickvals=np.linspace(0, 1, 5),
+                ticktext=["0%", "25%", "50%", "75%", "100%"],
+                gridcolor="gray",
+                gridwidth=0.3
+            )
+        ),
+        legend=dict(
+            title="Feature Categories",
+            orientation="h",
+            yanchor="bottom",
+            y=-0.2
+        ),
+        showlegend=True
+    )
+
+    return fig
+
+
+# Example Streamlit Integration
+st.set_page_config(layout="wide")
+st.title("Breast Cancer Predictor - Enhanced Visualization")
+
+# Assuming input_data is obtained from user input
+input_data = {
+    'radius_mean': 15, 'texture_mean': 10, 'perimeter_mean': 90, 'area_mean': 500,
+    'smoothness_mean': 0.1, 'compactness_mean': 0.2, 'concavity_mean': 0.3,
+    'concave points_mean': 0.05, 'symmetry_mean': 0.15, 'fractal_dimension_mean': 0.06,
+    'radius_se': 0.4, 'texture_se': 0.5, 'perimeter_se': 0.6, 'area_se': 0.7,
+    'smoothness_se': 0.02, 'compactness_se': 0.03, 'concavity_se': 0.04,
+    'concave points_se': 0.05, 'symmetry_se': 0.02, 'fractal_dimension_se': 0.03,
+    'radius_worst': 25, 'texture_worst': 20, 'perimeter_worst': 150, 'area_worst': 1200,
+    'smoothness_worst': 0.15, 'compactness_worst': 0.25, 'concavity_worst': 0.35,
+    'concave points_worst': 0.1, 'symmetry_worst': 0.2, 'fractal_dimension_worst': 0.08
+}
+
+# Display Improved Chart
+fig = get_improved_radar_chart(input_data)
+st.plotly_chart(fig)
