@@ -1,4 +1,4 @@
-# Breast Cancer Prediction App
+# Cancer Prediction App
 
 
 ![Alt text](screen1.png)
