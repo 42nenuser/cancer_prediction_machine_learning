@@ -65,16 +65,6 @@ Now open **http://localhost:8501** to access the app.
 
 ---
 
-## 📡 Deploying to GitHub Codespaces
-
-### 1️⃣ Open in Codespaces
-Go to your repository and select **"Open in Codespaces"**.
-
-### 2️⃣ Build and Run
-```bash
-docker build -t breast-cancer-app .
-docker run -p 8501:8501 breast-cancer-app
-```
 
 ---
 
