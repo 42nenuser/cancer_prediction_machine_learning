@@ -1,1 +1,4 @@
 testing
+#!/bin/bash
+curl -L -o ~/Downloads/breast-cancer-wisconsin-data.zip\
+  https://www.kaggle.com/api/v1/datasets/download/uciml/breast-cancer-wisconsin-data
