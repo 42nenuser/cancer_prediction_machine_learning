@@ -66,15 +66,5 @@ Now open **http://localhost:8501** to access the app.
 ---
 
 
----
 
-## 🔗 References
-- [Streamlit Documentation](https://docs.streamlit.io/)
-- [Docker Documentation](https://docs.docker.com/)
-- [Scikit-learn Documentation](https://scikit-learn.org/stable/)
-
----
-
-## 📜 License
-This project is licensed under the **MIT License**.
 
