@@ -3,8 +3,8 @@
 
 ![Alt text](screen1.png)
 
-![Alt text](data-viz.png)
-![Alt text](data-viz2.png)
+![Alt text](heatmap.png)
+![Alt text](features-corr.png)
 This is a **Streamlit web application** for predicting breast cancer diagnosis based on **cell nuclei measurements**. The app uses **machine learning** to classify tumors as **benign** or **malignant** based on user-inputted feature values. It includes **interactive sliders**, a **radar chart visualization**, and a **Dockerized deployment**.
 
 ## 🚀 Features
