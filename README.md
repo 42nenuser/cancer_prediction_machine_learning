@@ -32,26 +32,3 @@ docker build -t breast-cancer-app .
 docker run -p 8501:8501 breast-cancer-app
 ```
 
-Now open **http://localhost:8501** to access the app.
-
----
-
-## 📂 Project Structure
-```
-/breast-cancer-app
-│── app
-│   ├── app.py             # Streamlit application
-│   ├── data.csv           # Breast cancer dataset
-│   ├── model.pkl          # Pretrained ML model
-│   ├── scaler.pkl         # Scaler for feature normalization
-│   └── style.css          # Custom styling
-│── requirements.txt       # Python dependencies
-│── Dockerfile             # Docker instructions
-│── .devcontainer/         # GitHub Codespaces configuration
-```
-
----
-
-
-
-
