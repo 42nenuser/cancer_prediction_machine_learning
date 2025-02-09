@@ -22,7 +22,7 @@ This is a **Streamlit web application** for predicting breast cancer diagnosis b
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/breast-cancer-app.git
+git clone https://github.com/42nenuser/breast-cancer-app.git
 cd breast-cancer-app
 ```
 
