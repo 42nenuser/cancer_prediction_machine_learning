@@ -20,19 +20,6 @@ git clone https://github.com/your-username/breast-cancer-app.git
 cd breast-cancer-app
 ```
 
-### 2️⃣ Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 3️⃣ Run the App
-```bash
-streamlit run app/app.py
-```
-Open **http://localhost:8501** in your browser.
-
----
-
 ## 🐳 Running with Docker
 
 ### 1️⃣ Build the Docker Image
